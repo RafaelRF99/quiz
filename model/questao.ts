@@ -36,4 +36,13 @@ export default class IQuestao {
         }
         return false
     }
+
+    transformarObjeto() {
+        return {
+            id: this.id,
+            enunciado: this.enunciado,
+            resposta: this.respostas.map(res => res.transformarObjeto()),
+            acertou: this.acertou
+        }
+    }
 }

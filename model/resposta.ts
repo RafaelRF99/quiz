@@ -20,4 +20,20 @@ export default class IResposta {
     get revelada() {
         return this.#revelada
     }
+
+    static certa(valor: string) {
+        return new IResposta(valor, true)
+    }
+
+    static errada(valor: string) {
+        return new IResposta(valor, false)
+    }
+
+    transformarObjeto() {
+        return {
+            valor: this.valor,
+            certa: this.certa,
+            revelada: this.revelada,
+        }
+    }
 }
