@@ -8,6 +8,12 @@ const questoes: IQuestao[] = [
         IResposta.errada('Terceira'),
         IResposta.certa('Quarta'),
     ]),
+    new IQuestao(203, 'Pergunta número 3', [
+        IResposta.errada('Primeira'),
+        IResposta.errada('Segunda'),
+        IResposta.errada('Terceira'),
+        IResposta.certa('Quarta'),
+    ]),
     new IQuestao(404, 'Pergunta número 2', [
         IResposta.certa('Primeira'),
         IResposta.errada('Segunda'),
