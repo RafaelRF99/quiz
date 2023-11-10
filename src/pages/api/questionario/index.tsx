@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 import questoes from "../bancoDeQuestoes";
+import { Embaralhar } from "@/functions/arrays";
 
 export default function Questionario(req: NextApiRequest, res: NextApiResponse) {
-
-    res.status(200).json(questoes.map(questao => questao.id))
+    const ids = questoes.map(questao => questao.id)
+    res.status(200).json(Embaralhar(ids))
 }

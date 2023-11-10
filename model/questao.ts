@@ -1,3 +1,4 @@
+import { Embaralhar } from "@/functions/arrays"
 import IResposta from "./resposta"
 
 export default class IQuestao {
@@ -35,6 +36,11 @@ export default class IQuestao {
                 return true
         }
         return false
+    }
+
+    embaralharRespostas(): IQuestao {
+        let respostasEmbaralhadas = Embaralhar(this.respostas)
+        return new IQuestao(this.id, this.enunciado, respostasEmbaralhadas, this.acertou)
     }
 
     transformarObjeto() {
