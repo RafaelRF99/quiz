@@ -29,6 +29,10 @@ export default class IResposta {
         return new IResposta(valor, false)
     }
 
+    revelar() {
+        return new IResposta(this.valor, this.certa, true)
+    }
+
     transformarObjeto() {
         return {
             valor: this.valor,

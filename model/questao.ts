@@ -38,6 +38,16 @@ export default class IQuestao {
         return false
     }
 
+    responderCom(indice: number): IQuestao {
+        const acertou = this.respostas[indice]?.certa
+        const respostas = this.respostas.map((res, i) => {
+            const resSelecionada = indice === i
+            const deveRevelar = resSelecionada || res.certa
+            return deveRevelar ? res.revelar() : res
+        })
+        return new IQuestao(this.id, this.enunciado, respostas, acertou)
+    }
+
     embaralharRespostas(): IQuestao {
         let respostasEmbaralhadas = Embaralhar(this.respostas)
         return new IQuestao(this.id, this.enunciado, respostasEmbaralhadas, this.acertou)
@@ -48,6 +58,7 @@ export default class IQuestao {
             id: this.id,
             enunciado: this.enunciado,
             resposta: this.respostas.map(res => res.transformarObjeto()),
+            respondida: this.respondida,
             acertou: this.acertou
         }
     }
