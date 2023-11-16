@@ -1,5 +1,5 @@
 .resposta {
-    height: 100px;
+    height: 60px;
     min-width: 500px;
     width: 80%;
     
@@ -49,4 +49,26 @@
 .valor {
     font-size: 1.3rem;
     font-weight: 700;
+}
+
+.verso > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    border-radius: 12px;
+}
+
+.certa .valor, .errada .valor {
+    font-size: 1.5rem;
+}
+
+.certa {
+    background-color: #2BAA6D;
+}
+
+.errada {
+    background-color: #E44A4C;
 }
