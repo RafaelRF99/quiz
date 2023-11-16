@@ -10,9 +10,10 @@ interface QuestaoProps {
     valor: IQuestao
     respostaFornecida: (i: number) => void
     tempoEsgotado: () => void
+    tempoParaResposta: number
 }
 
-export default function Questao({ valor, respostaFornecida, tempoEsgotado }: QuestaoProps) {
+export default function Questao({ valor, respostaFornecida, tempoEsgotado, tempoParaResposta }: QuestaoProps) {
     const letras = [
         {valor: 'A', cor: '#F2C866'},
         {valor: 'B', cor: '#F266BA'},
@@ -33,7 +34,7 @@ export default function Questao({ valor, respostaFornecida, tempoEsgotado }: Que
     return (
         <div className={styles.questao}>
             <Enunciado texto={valor.enunciado} />
-            <Temporizador duracao={10} tempoEsgotado={tempoEsgotado} />
+            <Temporizador duracao={tempoParaResposta} tempoEsgotado={tempoEsgotado} />
             {RenderizarRespostas()}
         </div>
     )
