@@ -33,6 +33,10 @@ export default class IResposta {
         return new IResposta(this.valor, this.certa, true)
     }
 
+    static criarUsandoObjeto(obj: IResposta): IResposta {
+        return new IResposta(obj.valor, obj.certa, obj.revelada)
+    }
+
     transformarObjeto() {
         return {
             valor: this.valor,

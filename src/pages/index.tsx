@@ -1,11 +1,11 @@
 import styles from '@/styles/Home.module.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import Questao from '@/components/Questao'
 import IQuestao from '../../model/questao'
 import IResposta from '../../model/resposta'
-import Botao from '@/components/Botao'
+
+import Questionario from '@/components/Questionario'
 
 const questaoMock = new IQuestao(2, "Enunciado", [
   IResposta.errada('Teste1'),
@@ -14,24 +14,47 @@ const questaoMock = new IQuestao(2, "Enunciado", [
   IResposta.errada('Teste4')
 ])
 
+const BASE_URL = 'http://localhost:3000/api'
+
 export default function Home() {
+  const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
   const [questao, setQuestao] = useState(questaoMock)
 
-  function respostaFornecida(i: number) {
-    console.log(i)
-    setQuestao(questao.responderCom(i))
+  async function carregarQuestoesIds() {
+    const res = await fetch(`${BASE_URL}/questionario`)
+    const idsQuestoes = await res.json()
+    console.log(idsQuestoes)
+    setIdsDasQuestoes(idsQuestoes)
   }
 
-  function tempoEsgotado() {
-    if(questao.naoRespondida) {
-      setQuestao(questao.responderCom(-1))
-    }
+  async function carregarQuestao(idQuestao: number) {
+    const res = await fetch(`${BASE_URL}/questoes/${idQuestao}`)
+    const json = await res.json()
+    const novaQuestao = IQuestao.criarUsandoObjeto(json)
+    console.log(novaQuestao)
+    setQuestao(novaQuestao);
+  }
+
+  useEffect(() => {
+    carregarQuestoesIds()
+  },[])
+  
+  useEffect(() => {
+    idsDasQuestoes.length > 0 && carregarQuestao(idsDasQuestoes[0])
+  },[idsDasQuestoes])
+
+  function questaoRespondida(questao: IQuestao) {
+
+  }
+
+  function irParaProximoPasso() {
+
   }
   
   return (
     <main className={styles.container}>
-      <Questao valor={questao} respostaFornecida={respostaFornecida} tempoEsgotado={tempoEsgotado} />
-      <Botao texto='Próxima' />
+      <Questionario questao={questao} ultimaPergunta={true} 
+      questaoRespondida={questaoRespondida} irParaProximoPasso={irParaProximoPasso}  />
     </main>
   )
 }

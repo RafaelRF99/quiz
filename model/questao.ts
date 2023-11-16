@@ -57,6 +57,11 @@ export default class IQuestao {
         return new IQuestao(this.id, this.enunciado, respostasEmbaralhadas, this.acertou)
     }
 
+    static criarUsandoObjeto(obj: IQuestao): IQuestao {
+        const res = obj.respostas.map(resp => IResposta.criarUsandoObjeto(resp))
+        return new IQuestao(obj.id, obj.enunciado, res, obj.acertou)
+    }
+
     transformarObjeto() {
         return {
             id: this.id,
