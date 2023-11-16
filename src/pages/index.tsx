@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Questao from '@/components/Questao'
 import IQuestao from '../../model/questao'
 import IResposta from '../../model/resposta'
+import Botao from '@/components/Botao'
 
 const questaoMock = new IQuestao(2, "Enunciado", [
   IResposta.errada('Teste1'),
@@ -30,6 +31,7 @@ export default function Home() {
   return (
     <main className={styles.container}>
       <Questao valor={questao} respostaFornecida={respostaFornecida} tempoEsgotado={tempoEsgotado} />
+      <Botao texto='Próxima' />
     </main>
   )
 }
