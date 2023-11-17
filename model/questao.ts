@@ -66,7 +66,7 @@ export default class IQuestao {
         return {
             id: this.id,
             enunciado: this.enunciado,
-            resposta: this.respostas.map(res => res.transformarObjeto()),
+            respostas: this.respostas.map(res => res.transformarObjeto()),
             respondida: this.respondida,
             acertou: this.acertou
         }

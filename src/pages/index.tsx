@@ -18,7 +18,7 @@ const BASE_URL = 'http://localhost:3000/api'
 
 export default function Home() {
   const [idsDasQuestoes, setIdsDasQuestoes] = useState<number[]>([])
-  const [questao, setQuestao] = useState(questaoMock)
+  const [questao, setQuestao] = useState<IQuestao>(questaoMock)
 
   async function carregarQuestoesIds() {
     const res = await fetch(`${BASE_URL}/questionario`)
