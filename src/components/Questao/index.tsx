@@ -25,7 +25,7 @@ export default function Questao({ valor, respostaFornecida, tempoEsgotado, tempo
 
     function RenderizarRespostas() {
         return valor.respostas.map((res, i ) => {
-            return <Resposta key={i} valor={res} indice={i} 
+            return <Resposta key={`${questao.id} - ${i}`} valor={res} indice={i} 
             letra={letras[i].valor} corFundoLetra={letras[i].cor} 
             respostaFornecida={respostaFornecida} />
         })
@@ -34,7 +34,7 @@ export default function Questao({ valor, respostaFornecida, tempoEsgotado, tempo
     return (
         <div className={styles.questao}>
             <Enunciado texto={valor.enunciado} />
-            <Temporizador duracao={tempoParaResposta} tempoEsgotado={tempoEsgotado} />
+            <Temporizador key={questao.id} duracao={tempoParaResposta} tempoEsgotado={tempoEsgotado} />
             {RenderizarRespostas()}
         </div>
     )

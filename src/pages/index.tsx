@@ -44,10 +44,8 @@ export default function Home() {
   }
 
   function irParaProximaPergunta() {
-    if (questao) {
       const proximoIndice = idsDasQuestoes.indexOf(questao.id) + 1
       return idsDasQuestoes[proximoIndice]
-    }
   }
 
   function irParaProximoPasso() {
@@ -71,8 +69,10 @@ export default function Home() {
   
   return (
     <main className={styles.container}>
-      <Questionario questao={questao} ultimaPergunta={irParaProximaPergunta() === undefined} 
-      questaoRespondida={questaoRespondida} irParaProximoPasso={irParaProximoPasso}  />
+      {questao  ? (
+        <Questionario questao={questao} ultimaPergunta={irParaProximaPergunta() === undefined} 
+        questaoRespondida={questaoRespondida} irParaProximoPasso={irParaProximoPasso}  />
+      ) : false}
     </main>
   )
 }
